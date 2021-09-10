@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ce8e33ea-cd4c-430c-8b4e-f12e3a82712f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     laboratorio.`IdLaboratorio` AS laboratorio_IdLaboratorio,
+     laboratorio.`Nombre` AS laboratorio_Nombre,
+     laboratorio.`Direccion` AS laboratorio_Direccion,
+     laboratorio.`Telefono` AS laboratorio_Telefono,
+     laboratorio.`Estado` AS laboratorio_Estado
+FROM
+     `laboratorio` laboratorio]]>
+	</queryString>
+	<field name="laboratorio_IdLaboratorio" class="java.lang.Integer"/>
+	<field name="laboratorio_Nombre" class="java.lang.String"/>
+	<field name="laboratorio_Direccion" class="java.lang.String"/>
+	<field name="laboratorio_Telefono" class="java.lang.Integer"/>
+	<field name="laboratorio_Estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="136" uuid="b5039e5b-60d2-45f1-8a48-bd5af468842f"/>
+				<imageExpression><![CDATA["Labo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="16c2681d-28b2-4125-9073-6c866dbf36b3"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Laboratorio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="271" y="62" width="62" height="22" uuid="7d2a1bf2-bdd0-405e-b114-5e3686ca7c38"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Reporte]]></text>
+			</staticText>
+			<image>
+				<reportElement x="476" y="0" width="79" height="62" uuid="4715bf78-1d5b-4f2d-9348-d0752a1318c9"/>
+				<imageExpression><![CDATA["Lab.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="984714f8-d71a-456f-b347-6cef8624b7f5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="111" height="15" forecolor="#736343" uuid="2fce83cc-e87b-469b-90a5-a091094515c4"/>
+				<text><![CDATA[Id Laboratorio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="0" width="111" height="15" forecolor="#736343" uuid="4a78ef3b-79b3-4fe2-9fc7-e816c03f3b80"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="0" width="111" height="15" forecolor="#736343" uuid="ba73aa86-1e5d-4d23-82ac-b196d3952ea0"/>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="0" width="111" height="15" forecolor="#736343" uuid="088b07a1-77b9-4d8a-9cac-0e20bdaa8d3a"/>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="0" width="111" height="15" forecolor="#736343" uuid="ebc794d3-9fd4-4fd1-8765-814f96a4eaca"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="9e5c8f38-e3f2-473c-ae65-cffb74b49009"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="5a78da71-182d-4365-908e-86385bb206a6"/>
+					<textFieldExpression><![CDATA[$F{laboratorio_IdLaboratorio}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="111" y="0" width="111" height="15" uuid="fc7036e4-f58d-405a-9d2f-d463237f79f2"/>
+					<textFieldExpression><![CDATA[$F{laboratorio_Nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="e47a20f3-2e55-448c-ae95-963c667e147c"/>
+					<textFieldExpression><![CDATA[$F{laboratorio_Direccion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="9a865b5f-d44c-439b-9449-1558f714838c"/>
+					<textFieldExpression><![CDATA[$F{laboratorio_Estado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="333" y="0" width="111" height="15" uuid="97415107-1965-44df-95a9-a897ee08ba7a"/>
+					<textFieldExpression><![CDATA[$F{laboratorio_Telefono}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="b320978c-394a-4b39-a008-342814b426ef"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="226" y="15" width="107" height="20" uuid="9c088c51-c521-43c2-aed0-de37930b53ab"/>
+				<text><![CDATA[MI Pequeño Angelito]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="0ffa37d1-4982-4826-b655-5a4822fcb102"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="4ee9a08b-6ef3-4dc9-8ec8-b1833420624e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="0abd0f8f-4ce4-4ba0-8b9e-ab44f3d1152c"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="aebfe17f-d25b-40fb-bd37-f99e1681f455"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

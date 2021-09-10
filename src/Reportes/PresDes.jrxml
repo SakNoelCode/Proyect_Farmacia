@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="300" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f904ca7-7559-4b1e-a3ba-1dc5c789111c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Descripcion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{presentacion_Descripcion}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     presentacion.`IdPresentacion` AS presentacion_IdPresentacion,
+     presentacion.`Descripcion` AS presentacion_Descripcion,
+     presentacion.`Estado` AS presentacion_Estado
+FROM
+     `presentacion` presentacion
+WHERE
+presentacion.`Descripcion` =$P{Descripcion}]]>
+	</queryString>
+	<field name="presentacion_IdPresentacion" class="java.lang.Integer"/>
+	<field name="presentacion_Descripcion" class="java.lang.String"/>
+	<field name="presentacion_Estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="c6369f8b-1f4a-47a2-8a4e-2ccaea0dab22"/>
+				<imageExpression><![CDATA["Pass1.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="1b867a9c-b9fa-45dd-aef2-ea90ea4402d8"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="451" height="66" uuid="70e212b2-d078-4adc-835f-ad774cc1ef30"/>
+					<textElement>
+						<font size="37" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Presentación de los Productos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="184" y="66" width="249" height="29" uuid="21476c7c-f80c-4a3d-b63a-c61be2d52c38"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reporte]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="3b7af282-5d78-4eae-81c8-d5d5bbc5ec5f"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="302" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="882b6c91-943c-43bf-a530-6987f2efe4e8"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="185" height="18" forecolor="#000000" uuid="2d2ee2a6-bd46-4d79-a6b8-51380c6bf562"/>
+				<textElement>
+					<font fontName="AR JULIAN" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id Presentación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="218" y="8" width="152" height="18" forecolor="#000000" uuid="681a2bf3-6caf-4fe5-b000-5fee7527ec70"/>
+				<textElement>
+					<font fontName="AR JULIAN" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="383" y="7" width="143" height="18" forecolor="#000000" uuid="5d714377-3b89-41e0-a4fd-d5dbd6f48a76"/>
+				<textElement>
+					<font fontName="AR JULIAN" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="24" width="131" height="1" uuid="e313d165-6ad8-475c-8a45-af7d6fab3bda"/>
+			</line>
+			<line>
+				<reportElement x="218" y="24" width="93" height="1" uuid="e4e46511-7666-4ca1-b610-956a0e0a02eb"/>
+			</line>
+			<line>
+				<reportElement x="383" y="24" width="58" height="1" uuid="42dd45ba-dc0d-4c46-b7c3-52c496e8e5e5"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="be8d6675-32be-496d-92a2-d96f72c97e81"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="54" y="0" width="131" height="18" uuid="2acb59d4-4504-47bf-800d-07edd0b5a43f"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{presentacion_IdPresentacion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="236" y="0" width="134" height="18" uuid="3fd2b24e-09f6-4690-800a-0ca805b86151"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{presentacion_Descripcion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="394" y="0" width="143" height="18" uuid="03dc29f9-4f6d-4214-8607-35505c617c51"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{presentacion_Estado}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="bbc5271d-f107-446b-b6f9-25448f4a0f78"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="974a41ab-5457-4c40-8da0-77ef6e784122"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="ef68c763-497f-4674-8ab0-ff409f5f0c60"/>
+					<textElement verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="8f583018-11f8-4f8d-a80f-156e3ca29957"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="12" y="0" width="131" height="20" forecolor="#FFFFFF" uuid="1dc28e20-a10d-4f7c-b234-493fa0b27edd"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Mi Pequeño Angelito]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="300" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0bd7948-32ad-49d8-b3ff-4e7eac8c8d87">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="5f282380-24e4-470a-9838-a96a570d59ee"/>
+	<parameter name="ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     producto.`idProducto` AS producto_idProducto,
+     producto.`Descripcion` AS producto_Descripcion,
+     producto.`Concentracion` AS producto_Concentracion,
+     producto.`Stock` AS producto_Stock,
+     producto.`Costo` AS producto_Costo,
+     producto.`Precio_Venta` AS producto_Precio_Venta,
+     producto.`RegistroSanitario` AS producto_RegistroSanitario,
+     producto.`FechaVencimiento` AS producto_FechaVencimiento,
+     producto.`Estado` AS producto_Estado,
+     producto.`idPresentacion` AS producto_idPresentacion,
+     producto.`idLaboratorio` AS producto_idLaboratorio,
+     presentacion.`idPresentacion` AS presentacion_idPresentacion,
+     presentacion.`Descripcion` AS presentacion_Descripcion,
+     laboratorio.`idLaboratorio` AS laboratorio_idLaboratorio,
+     laboratorio.`Nombre` AS laboratorio_Nombre
+FROM
+     `presentacion` presentacion INNER JOIN `producto` producto ON presentacion.`idPresentacion` = producto.`idPresentacion`
+     INNER JOIN `laboratorio` laboratorio ON producto.`idLaboratorio` = laboratorio.`idLaboratorio`
+WHERE  producto.`idProducto` =$P{ID}]]>
+	</queryString>
+	<field name="producto_idProducto" class="java.lang.Integer"/>
+	<field name="producto_Descripcion" class="java.lang.String"/>
+	<field name="producto_Concentracion" class="java.lang.String"/>
+	<field name="producto_Stock" class="java.lang.Integer"/>
+	<field name="producto_Costo" class="java.math.BigDecimal"/>
+	<field name="producto_Precio_Venta" class="java.math.BigDecimal"/>
+	<field name="producto_RegistroSanitario" class="java.lang.String"/>
+	<field name="producto_FechaVencimiento" class="java.sql.Date"/>
+	<field name="producto_Estado" class="java.lang.String"/>
+	<field name="producto_idPresentacion" class="java.lang.Integer"/>
+	<field name="producto_idLaboratorio" class="java.lang.Integer"/>
+	<field name="presentacion_idPresentacion" class="java.lang.Integer"/>
+	<field name="presentacion_Descripcion" class="java.lang.String"/>
+	<field name="laboratorio_idLaboratorio" class="java.lang.Integer"/>
+	<field name="laboratorio_Nombre" class="java.lang.String"/>
+	<group name="presentacion_Descripcion">
+		<groupExpression><![CDATA[$F{presentacion_Descripcion}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="157" y="7" width="645" height="24" forecolor="#B89F7D" backcolor="#70A9C6" uuid="72b0be81-658d-457c-9765-609d99f96dbe"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="263" height="23" forecolor="#FFFFFF" uuid="f46f27ea-edd3-47c2-a397-7e0a31b116fc"/>
+						<textElement>
+							<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{presentacion_Descripcion}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="250" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="108" width="96" height="91" uuid="78b7a6da-1d77-4d92-83f8-9a2db73865ab">
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["mm.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="55" y="89" width="161" height="110" uuid="8ec00120-3ad7-4822-83d8-c9de607e2208">
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["m1.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="65" width="449" height="29" uuid="b07bb41b-92c8-4e25-bdd0-ca5ac00ccd4e"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="822" height="65" forecolor="#006699" backcolor="#006699" uuid="238a6640-852f-4b05-8fe8-fa3423b60a15"/>
+				<staticText>
+					<reportElement style="Title" x="231" y="0" width="578" height="65" uuid="ea0b4fe4-5a54-4ead-bbff-c8eb28efcbd9"/>
+					<textElement textAlignment="Right">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Productos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<frame>
+				<reportElement x="157" y="0" width="645" height="14" uuid="2cf21e25-fdcb-474f-92ee-0f437a40d02e"/>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="41" y="0" width="80" height="14" forecolor="#000000" uuid="955395f5-0f73-401b-92d4-5622086192e0"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Descripcion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="121" y="0" width="86" height="14" forecolor="#000000" uuid="1e578c7f-61ae-4406-b7f4-37cc11ab1b27"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Concentracion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="220" y="0" width="41" height="14" forecolor="#000000" uuid="599a2772-512f-4d61-a28a-71756dacb794"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Stock]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="270" y="0" width="41" height="14" forecolor="#000000" uuid="a2333126-f058-4ad0-89cf-c90f929eb8bd"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Costo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="323" y="0" width="45" height="14" forecolor="#000000" uuid="a4566f32-f57d-4e4e-a348-cf0d686ee81f"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Venta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="382" y="0" width="41" height="14" forecolor="#000000" uuid="14c1b4a7-79cd-4ac9-ad2a-a7e784d8f109"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[R.S.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="435" y="0" width="80" height="14" forecolor="#000000" uuid="2abe9f08-c5d4-4eae-9977-221bfb31340a"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Vencimiento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="588" y="0" width="57" height="14" forecolor="#000000" uuid="4259c4d3-0cd9-45d4-ab9a-69cdf3aab3b9"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Estado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="515" y="0" width="83" height="14" forecolor="#000000" uuid="2e16fcd6-7dc5-4690-9391-f1613d02b3a8"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[laboratorio]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="160" y="0" width="41" height="14" forecolor="#000000" uuid="328474fd-6c16-40b5-9cf2-dadce98bf095"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="160" y="15" width="642" height="1" uuid="deb2a594-eaf9-4369-a416-e07d0d5f8d24"/>
+			</line>
+			<frame>
+				<reportElement x="160" y="0" width="642" height="14" uuid="395ebeb0-96ce-41cd-b336-d23128159444"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="41" y="0" width="77" height="14" uuid="44cbd2dd-9bb9-4dde-8529-8f64185ebfa9"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_Descripcion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="130" y="0" width="74" height="14" uuid="09ab996b-e696-469c-bedd-806adb26d4d3"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_Concentracion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="212" y="0" width="46" height="14" uuid="cd9688fc-6aa8-4b65-b7ac-e81ebb78cb81"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_Stock}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="267" y="0" width="41" height="14" uuid="f4cf8173-dfdc-4b0d-9780-934e59a54e78"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_Costo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="315" y="0" width="45" height="14" uuid="b7ee78f5-9e2d-44bf-8797-d4fd011541db"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_Precio_Venta}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="377" y="0" width="60" height="14" uuid="5e2befd5-1f70-4768-96aa-4d1cfaf39dc9"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_RegistroSanitario}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="437" y="0" width="64" height="14" uuid="862c6874-a826-42c4-a06a-823a739fd48c"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_FechaVencimiento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="595" y="0" width="47" height="14" uuid="0e9bd980-b05c-43ce-a27e-8df113709c8f"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{producto_Estado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="515" y="0" width="70" height="14" uuid="44b5e41a-6637-4c0f-964e-e3884ab3185d"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{laboratorio_Nombre}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="160" y="0" width="41" height="14" uuid="95efcb3f-04d1-4582-8428-3416430fb02d"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_idProducto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="649ab990-63c6-40f2-95ca-02a85d20d98f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#D0B48E" backcolor="#006699" uuid="7c847cff-abf7-45e8-9177-2c654bf015ff"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="010bde2a-214e-46dc-bae8-0681f5b5b88c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="c449ebde-c595-4efa-b6b6-9423f24bda3a"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF" uuid="ed529d84-3621-4fc0-bea0-3f085f139d09"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="400" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac05673d-d219-482e-97c1-398bba0fa913">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tipocomprobante.`IdTipoComprobante` AS tipocomprobante_IdTipoComprobante,
+     tipocomprobante.`Descripcion` AS tipocomprobante_Descripcion,
+     tipocomprobante.`Estado` AS tipocomprobante_Estado
+FROM
+     `tipocomprobante` tipocomprobante]]>
+	</queryString>
+	<field name="tipocomprobante_IdTipoComprobante" class="java.lang.Integer"/>
+	<field name="tipocomprobante_Descripcion" class="java.lang.String"/>
+	<field name="tipocomprobante_Estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<image>
+				<reportElement x="311" y="0" width="264" height="68" uuid="94a1623a-57b6-4dd9-9c7a-2f05af839225"/>
+				<imageExpression><![CDATA["leaf_banner_red.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="311" height="33" uuid="56e23130-2eba-4ec1-88c5-ce9a7bf74651"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="AR JULIAN"/>
+				</textElement>
+				<text><![CDATA[Tipos de Comprobantes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="07ac7311-faba-48ff-84f7-c751b076feec"/>
+				<text><![CDATA[Reporte]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="15a8e308-2079-4f41-bf18-2e013486f95b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="51" y="20" width="117" height="15" uuid="ba655d8f-f465-4fd0-b787-0fbc2eef6ae9"/>
+				<text><![CDATA[Id Comprobante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="247" y="19" width="147" height="15" uuid="629d3903-a1aa-45b9-966b-ff69bb39ed84"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="415" y="19" width="127" height="15" uuid="f2160e1b-aa6f-4c12-afe2-628c69c359e6"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="62ac262b-def1-4ab6-9822-725292f3490a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="66" y="1" width="131" height="15" uuid="bc418677-56cb-4f84-b618-288c0efbff2c"/>
+				<textFieldExpression><![CDATA[$F{tipocomprobante_IdTipoComprobante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="415" y="0" width="127" height="15" uuid="407032f6-9601-4199-a6c3-6e232dd64d8f"/>
+				<textFieldExpression><![CDATA[$F{tipocomprobante_Estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="247" y="1" width="128" height="15" uuid="c70cd14c-770f-488e-9580-15a05ee188cb"/>
+				<textFieldExpression><![CDATA[$F{tipocomprobante_Descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="6136402c-b311-4659-89c7-009acf9bc0f5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="fd447597-752a-4146-9d2c-328a56314234"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="f1536a3f-2b4e-4c28-a1f4-56cce6eb7440"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="ab9187b7-8519-4614-b237-50fd1d0b366c"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="247" y="0" width="128" height="20" forecolor="#666666" uuid="651e3f72-2ccb-4ae1-88f1-c2e473cf9298"/>
+				<text><![CDATA[Mi Pequeño Angelito]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
